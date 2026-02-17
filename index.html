@@ -2,58 +2,83 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feliz 18 Princesa 🎂</title>
+
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    text-align: center;
-    color: white;
     margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.container {
-    margin-top: 100px;
-    padding: 20px;
-    position: relative;
-    z-index: 2;
-}
-
-button {
-    background-color: white;
-    color: #ff4e73;
-    border: none;
-    padding: 12px 20px;
-    margin: 10px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s;
-}
-
-button:hover {
-    background-color: #ff4e73;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* CONTENEDORES */
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .hidden {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
 }
 
+/* TEXTOS */
 h1 {
-    font-size: 38px;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+/* BOTONES */
+button {
+    background: white;
+    color: #ff4e73;
+    border: none;
+    padding: 15px 25px;
+    margin: 10px 0;
+    border-radius: 30px;
+    font-size: 18px;
+    width: 85%;
+    max-width: 320px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+button:active {
+    transform: scale(0.95);
 }
 
 /* CORAZONES */
 .heart {
     position: fixed;
     bottom: -20px;
-    color: rgba(255,255,255,0.8);
-    animation: floatUp linear forwards;
     pointer-events: none;
-    z-index: 1;
+    animation: floatUp linear forwards;
+    z-index: 0;
 }
 
 @keyframes floatUp {
@@ -66,75 +91,103 @@ h1 {
         opacity: 0;
     }
 }
+
+/* FINAL */
+.final-message {
+    animation: fadeIn 2s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
 </style>
 </head>
 
 <body>
 
+<!-- PASO 1 -->
 <div class="container" id="step1">
     <h1>🎁 Laura...</h1>
     <p>Princesa, este regalo solo se desbloquea si respondes 😌</p>
     <button onclick="nextStep('step2')">Acepto 💕</button>
 </div>
 
+<!-- PASO 2 -->
 <div class="container hidden" id="step2">
     <h1>Pregunta 1 👀</h1>
-    <p>¿Quien dijo te amo primero?</p>
+    <p>¿Quién dijo "te amo" primero?</p>
     <button onclick="nextStep('step3')">Juan</button>
     <button onclick="nextStep('step3')">Laura</button>
 </div>
 
+<!-- PASO 3 -->
 <div class="container hidden" id="step3">
     <h1>Pregunta 2 💭</h1>
     <p>¿Qué pasó el 04 de junio de 2025?</p>
-    <button onclick="wrongAnswer()">fue nuestra primera vez</button>
-    <button onclick="nextStep('step4')">fuimos al cine por primera vez</button>
+    <button onclick="wrongAnswer()">Fue nuestra primera vez</button>
+    <button onclick="nextStep('step4')">Fuimos al cine por primera vez</button>
 </div>
 
+<!-- PASO 4 -->
 <div class="container hidden" id="step4">
     <h1>Última pregunta...</h1>
-    <p>¿Tu me amas?</p>
+    <p>¿Tú me amas?</p>
     <button onclick="showFinal()">Siempre 💍</button>
     <button onclick="showFinal()">Más que ayer 🤍</button>
 </div>
 
+<!-- FINAL -->
 <div class="container hidden" id="final">
-    <h1>🔓 FELICES 18, PRINCESA 🎂</h1>
-    <p>
-        Hoy cumples 18…<br><br>
-        Y aunque sé que este día para ti es un dia mas,<br>
-        quiero que desde hoy tenga un significado diferente.<br><br>
-        Porque el 19 de febrero de 2025 te hablé con la excusa más tonta del mundo…<br>
-        pero funcionó y fue la mejor decisión de mi vida.<br><br>
-        El 29 de octubre lloramos juntos cuando te pedí que fueras mi novia<br>
-        y desde antes de ese día, incluso con peleas, nunca he dejado de verte como mi futuro.<br><br>
-        Cuando miro tus ojos y esos cachetes que me encantan<br>
-        siento que estoy viendo toda mi vida contigo.<br><br>
-        Pena es robar y volarse los transmetro<br>
-        pero no es pena enamorarme de ti como lo hice.<br><br>
-        Gracias por existir, cariño.<br>
-        Te amo hoy, mañana y todos los cumpleaños que vengan 🤍
-    </p>
+    <div class="final-message">
+        <h1>🔓 FELICES 18, PRINCESA 🎂</h1>
+        <p>
+            Hoy cumples 18…<br><br>
+            Y aunque sé que este día para ti es un día más,<br>
+            quiero que desde hoy tenga un significado diferente.<br><br>
+            Porque el 19 de febrero de 2025 te hablé con la excusa más tonta del mundo…<br>
+            pero fue la mejor decisión de mi vida.<br><br>
+            El 29 de octubre lloramos juntos cuando te pedí que fueras mi novia,<br>
+            y desde antes de ese día, incluso con peleas, nunca he dejado de verte como mi futuro.<br><br>
+            Cuando miro tus ojos y esos cachetes que me encantan,<br>
+            siento que estoy viendo toda mi vida contigo.<br><br>
+            Pena es robar y volarse los transmetro…<br>
+            pero no es pena enamorarme de ti como lo hice.<br><br>
+            Gracias por existir, princesa.<br>
+            Te amo hoy, mañana y siempre 🤍
+        </p>
+    </div>
 </div>
 
 <script>
 function nextStep(nextId) {
-    document.querySelectorAll('.container').forEach(step => {
-        step.classList.add('hidden');
+    document.querySelectorAll('.container').forEach(c => {
+        c.classList.add('hidden');
     });
-    document.getElementById(nextId).classList.remove('hidden');
+
+    setTimeout(() => {
+        document.getElementById(nextId).classList.remove('hidden');
+    }, 200);
 }
 
 function wrongAnswer() {
-    alert("Mmm… esa no fue nuestra primera cita especial 👀 intenta otra vez princesa 🤍");
+    alert("Mmm… esa no fue ese dia, intenta otra vez princesa 🤍");
+    
+    if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 200]);
+    }
+
     nextStep('step1');
 }
 
 function showFinal() {
-    document.querySelectorAll('.container').forEach(step => {
-        step.classList.add('hidden');
+    document.querySelectorAll('.container').forEach(c => {
+        c.classList.add('hidden');
     });
-    document.getElementById('final').classList.remove('hidden');
+
+    setTimeout(() => {
+        document.getElementById('final').classList.remove('hidden');
+    }, 200);
 }
 
 /* CORAZONES CONSTANTES */
@@ -143,7 +196,7 @@ function createHeart() {
     heart.className = "heart";
     heart.innerHTML = "🤍";
 
-    const size = Math.random() * 20 + 14;
+    const size = Math.random() * 25 + 15;
     heart.style.fontSize = size + "px";
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.animationDuration = Math.random() * 5 + 6 + "s";
